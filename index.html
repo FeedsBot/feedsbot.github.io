@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Feeds Bot</title>
+
+    <meta name="apple-mobile-web-app-title" content="Feeds Bot">
+    <meta name="application-name" content="Feeds Bot">
+    <meta charset="UTF-8">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png?v=2">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest?v=2">
+    <link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg?v=2" color="#5bbad5">
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico?v=2">
+    <meta name="apple-mobile-web-app-title" content="Feeds Bot">
+    <meta name="application-name" content="Feeds Bot">
+    <meta name="msapplication-TileColor" content="#151B2B">
+    <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml?v=2">
+    <meta name="theme-color" content="#151B2B">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-93686909-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-93686909-1');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+
+  </head>
+
+  <body>
+    <main>
+      <header>
+      <h1>
+          <a href="/">
+          <img src="/assets/icon.jpg" />
+          <span>Feeds Bot</span>
+          </a>
+          <div style="clear: both;"></div>
+      </h1>
+      <!-- <ul>
+          <li><a href="/go/twitter" target="_blank">Twitter</a></li>
+          <li><a href="/go/discord" target="_blank">Discord</a></li>
+          <li><a href="/go/donate" target="_blank">Donate</a></li>
+      </ul> -->
+      </header>
+
+      <section id="intro">
+        <!-- <script id="feedsbot-widget" src="/widget.js?includeImage"></script> -->
+
+        <div id="intro-text">
+          <h2>What's Feeds Bot?</h2>
+          <br>
+          <p><a href="http://twitter.com/feeds_bot" target="_blank">@Feeds_Bot</a> is a Twitter account that keeps viewers notified of feed outages on the Big Brother US and Canada live feeds.</p>
+          <br>
+          <p>In the process of running this account, a database is built with information about the entire season's uptime stats. This data is compiled below.</p>
+          <br>
+          <!-- <p><a href="#widget-info">↪ What's this widget?</a></p> -->
+        </div>
+        <div style="clear: both; height: 0;">&nbsp;</div>
+      </section>
+
+      <section id="season-info">
+        <div id="season-chart-container"><canvas></canvas></div>
+
+        <h2>Season Stats <small>(80 days, 15 hours)</small></h2>
+
+        <ul class="bordered">
+          <li><strong>🟢 Half Up:</strong> 0.2% <small>(3 hours, 55 minutes)</small></li>
+          <li><strong>🛑 Down:</strong> 16.3% <small>(13 days, 3 hours)</small></li>
+          <!--- <ul>
+            <li><strong>🐶 Pets:</strong> 11.4% <small>(9 days, 5 hours)</small></li>
+            <li><strong>🐠 Fish:</strong> 4.8% <small>(3 days, 22 hours)</small></li>
+          </ul> --->
+          <li><strong>😴 Sleep:</strong> 17.9% <small>(14 days, 11 hours)</small></li>
+        </ul>
+        
+        <div style="clear: both; height: 0;">&nbsp;</div>
+      </section>
+
+      <section id="outages-info">
+        <h2>Outages Stats <a href="/api/outages.csv">⬇CSV</a></h2>
+
+        <h3>Feeds have gone down <strong>2354 times</strong></h3>
+
+        <div>
+          <ul class="bordered">
+            <li><strong>Down times</strong></li>
+            <li><strong>Longest:</strong> 1 day, 3 hours <small>(2022-07-13 20:42 BBT)</small></li>
+            <li><strong>Average:</strong> 8 minutes</li>
+          </ul>
+
+          <ul class="bordered">
+            <li><strong>Up times</strong></li>
+            <li><strong>Longest:</strong> 11 hours, 46 minutes <small>(2022-07-25 13:15 BBT)</small></li>
+            <li><strong>Average:</strong> 30.3 minutes</li>
+          </ul>
+
+          <!--- <ul class="bordered">
+            <li>Feeds have been fish <strong>2153 times</strong></li>
+            <li><strong>Longest:</strong> 2 hours, 10 minutes <small>(2022-07-17 06:01 BBT)</small></li>
+            <li><strong>Average:</strong> 2.6 minutes</li>
+          </ul>
+
+          <ul class="bordered">
+            <li>Feeds have been pets <strong>201 times</strong></li>
+            <li><strong>Longest:</strong> 1 day, 3 hours <small>(2022-07-13 20:42 BBT)</small></li>
+            <li><strong>Average:</strong> 1 hour, 6 minutes</li>
+          </ul> --->
+        </div>
+
+        <p class="disclaimer">Updated at: 2022-09-26 20:00 BBT</p>
+      </section>
+
+      <section id="days-info">
+        <h2>Daily Stats <a href="/api/season.csv">⬇CSV</a></h2>
+        <canvas></canvas>
+        <p class="disclaimer">Disclaimer: Daily data may slightly change throughout the season as I go back and check that past data is accurate.</p>
+      </section>
+
+      <!-- <section id="api-info">
+        <h2>API <small>Beta</small></h2>
+
+        <div class="api-request">
+          <h4>/api/current.json <strong>⊕</strong><small>⊖</small></h4>
+<pre class="bordered">
+{
+  "status": "down",
+  "since": 1626207690,
+  "type": "fish"
+}</pre>
+<pre class="bordered">
+{
+  "status": "up",
+  "since": 1626207690
+}</pre>
+<pre class="bordered">
+{
+  "status":"sleep",
+  "since":1626207690
+}</pre>
+<pre class="bordered">
+{
+  "status":"pre",
+  "since":1626207690
+}</pre>
+        </div>
+
+        <div class="api-request">
+          <h4>/api/season.json <strong>⊕</strong><small>⊖</small></h4>
+<pre class="bordered">
+[
+  {
+    "date": "2021-07-07",
+    "sleep": 0,
+    "down": 298,
+    "up": 122,
+    "fish": 16.5,
+    "pets": 281.5,
+    "total": 1440
+  },
+  {
+    "date": "2021-07-08",
+    "sleep": 156.5,
+    "down": 488.5,
+    "up": 793.5,
+    "fish": 86,
+    "pets": 402.5,
+    "total": 1438.5
+  },
+  ....
+  {
+    "date": "2021-07-13",
+    "sleep": 255,
+    "down": 169,
+    "up": 386,
+    "fish": 168.5,
+    "pets": 0.5,
+    "total": 1440
+  }
+]</pre>
+        </div>
+
+        <div class="api-request">
+          <h4>/api/outages.json <strong>⊕</strong><small>⊖</small></h4>
+
+          <pre class="bordered">
+[
+  {
+    "start":1625702400,
+    "end":1625718840,
+    "duration":16440,
+    "status":0
+  },
+  {
+    "start":1625718840,
+    "end":1625718960,
+    "duration":120,
+    "status":2
+  },
+  {
+    "start":1625718960,
+    "end":1625719020,
+    "duration":60,
+    "status":0
+  },
+  {
+    "start":1625719020,
+    "end":1625719110,
+    "duration":90,
+    "status":2
+  },
+  {
+    "start":1625719110,
+    "end":1625719140,
+    "duration":30,
+    "status":0
+  },
+  ....
+]
+</pre>
+        </div>
+
+      </section>
+
+      <section id="widget-info">
+        <h2>Widget</h2>
+        <br>
+        <p>You can embed a live, updating widget onto any site using the code snippets below.</p>
+        <br>
+        <p>Including image:</p>
+        <code class="bordered">&lt;script id="feedsbot-widget" src="https://feeds.bot.nu/widget.js"&gt;&lt;/script&gt;</code>
+        <p>Not including image:</p>
+        <code class="bordered">&lt;script id="feedsbot-widget" src="https://feeds.bot.nu/widget.js/widget.js?includeImage"&gt;&lt;/script&gt;</code>
+      </section>
+ -->
+      <footer>
+      <span>Made with ❤️ in 🇨🇦 Canada</span>
+
+      <!-- <ul>
+          <li><a href="/go/twitter" target="_blank">Twitter</a></li>
+          <li><a href="/go/discord" target="_blank">Discord</a></li>
+          <li><a href="/go/donate" target="_blank">Donate</a></li>
+          <div style="clear: both;"></div>
+      </ul> -->
+
+      </footer>
+
+    </main>
+
+    <script>
+      function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+
+      if (inIframe()) {
+        var scriptElem = document.getElementById('feedsbot-widget');
+        scriptElem.parentNode.removeChild(scriptElem);
+      }
+
+      var totalChart = new Chart(document.getElementById('season-info').getElementsByTagName('canvas')[0], {
+        type: 'doughnut',
+        options: {
+          tooltips: {
+            callbacks: {
+              title: function(tooltipItem, data) {
+                return data['labels'][tooltipItem[0]['index']];
+              },
+              label: function(tooltipItem, data) {
+                return (data['datasets'][tooltipItem['datasetIndex']]['data'][tooltipItem['index']] * 100).toFixed(1) + '%';
+              }
+            },
+            displayColors: true
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          elements: { arc: {  borderWidth: 0 } },
+          legend: {
+              display: false
+          }
+        },
+        data: {"labels":["Down","Sleep","Up","Half Up"],"datasets":[{"data":[0.16266852686741334,0.17924239879775913,0.6560652448187811,0.0020238295160463844],"backgroundColor":["#a5131d","#5f0f6b","#266b0f","#26540F"]}]}
+      });
+
+      var daysChart = new Chart(document.getElementById('days-info').getElementsByTagName('canvas')[0], {
+        type: 'bar',
+        options: {
+          tooltips: {
+            callbacks: {
+              title: function(tooltipItem, data) {
+                return data['labels'][tooltipItem[0]['index']];
+              },
+              label: function(tooltipItem, data) {
+                var lines = [
+                  `${data['datasets'][0]['label']}: ${(data['datasets'][0]['data'][tooltipItem.index] * 100).toFixed(1)}%`,
+                  `${data['datasets'][1]['label']}: ${(data['datasets'][1]['data'][tooltipItem.index] * 100).toFixed(1)}%`,
+                  `${data['datasets'][2]['label']}: ${(data['datasets'][2]['data'][tooltipItem.index] * 100).toFixed(1)}%`
+                ];
+                return lines.reverse();
+              }
+            },
+            displayColors: true
+          },
+          scales: {
+            xAxes: [{
+              stacked: true,
+              ticks: {
+                fontSize: 10,
+                fontColor: 'rgba(184, 203, 241, 0.5)',
+                autoSkip: false,
+                maxRotation: 90,
+                minRotation: 90
+              }
+            }],
+            yAxes: [{
+              stacked: true,
+              ticks: {
+                fontColor: 'rgba(184, 203, 241, 0.5)',
+                callback: function(value) {
+                  return parseInt(value * 100) + '%'; // convert it to percentage
+                }
+              }
+            }]
+          }
+        },
+        data: {"labels":["2022-07-06","2022-07-07","2022-07-08","2022-07-09","2022-07-10","2022-07-11","2022-07-12","2022-07-13","2022-07-14","2022-07-15","2022-07-16","2022-07-17","2022-07-18","2022-07-19","2022-07-20","2022-07-21","2022-07-22","2022-07-23","2022-07-24","2022-07-25","2022-07-26","2022-07-27","2022-07-28","2022-07-29","2022-07-30","2022-07-31","2022-08-01","2022-08-02","2022-08-03","2022-08-04","2022-08-05","2022-08-06","2022-08-07","2022-08-08","2022-08-09","2022-08-10","2022-08-11","2022-08-12","2022-08-13","2022-08-14","2022-08-15","2022-08-16","2022-08-17","2022-08-18","2022-08-19","2022-08-20","2022-08-21","2022-08-22","2022-08-23","2022-08-24","2022-08-25","2022-08-26","2022-08-27","2022-08-28","2022-08-29","2022-08-30","2022-08-31","2022-09-01","2022-09-02","2022-09-03","2022-09-04","2022-09-05","2022-09-06","2022-09-07","2022-09-08","2022-09-09","2022-09-10","2022-09-11","2022-09-12","2022-09-13","2022-09-14","2022-09-15","2022-09-16","2022-09-17","2022-09-18","2022-09-19","2022-09-20","2022-09-21","2022-09-22","2022-09-23","2022-09-24","2022-09-25"],"datasets":[{"label":"Down","data":[0.19166666666666668,0.019791666666666666,0.11423611111111111,0.1851337269885377,0.08263888888888889,0.1125,0.09236111111111112,0.25416666666666665,1,0.08680555555555555,0.11770833333333333,0.12083333333333333,0.0920138888888889,0.0798611111111111,0.021527777777777778,0.32083333333333336,0.0753733935394234,0.28715277777777776,0.034027777777777775,0.06527777777777778,0.03611111111111111,0.017361111111111112,0.2965277777777778,0.08333333333333333,0.1482638888888889,0.03090277777777778,0.09965277777777778,0.04548611111111111,0.02048611111111111,0.33263816475495306,0.11597222222222223,0.18611111111111112,0.03229166666666667,0.09340277777777778,0.07777777777777778,0.029166666666666667,0.2517361111111111,0.0875,0.22291666666666668,0.05625,0.1486111111111111,0.05555555555555555,0.15,0.49270833333333336,0.32048611111111114,0.33645833333333336,0.5555555555555556,0.4878472222222222,0.228125,0.04722222222222222,0.42256944444444444,0.17326388888888888,0.17326388888888888,0.2951388888888889,0.13229166666666667,0.04618055555555556,0.024305555555555556,0.31006944444444445,0.07395833333333333,0.3159722222222222,0.05243055555555556,0.1673611111111111,0.030555555555555555,0.028819444444444446,0.471875,0.2142361111111111,0.06666666666666667,0.05763888888888889,0.09270833333333334,0.058353594998263286,0.11631944444444445,0.271875,0.1371527777777778,0.06215277777777778,0.050347222222222224,0.030555555555555555,0.05625,0.05118411000763942,0.3194444444444444,0.18611111111111112,0.153125,0.03958333333333333],"backgroundColor":"#a5131d"},{"label":"Sleep","data":[0,0.050694444444444445,0.08680555555555555,0.09378256339006599,0.05659722222222222,0.09236111111111112,0.1125,0.21180555555555555,0,0.004861111111111111,0.20069444444444445,0.17673611111111112,0.21284722222222222,0.20034722222222223,0.21805555555555556,0.23958333333333334,0.16290378603681835,0.03958333333333333,0.21215277777777777,0.16979166666666667,0.17708333333333334,0.20243055555555556,0.1527777777777778,0.1701388888888889,0.17604166666666668,0.2204861111111111,0.13333333333333333,0.22395833333333334,0.23020833333333332,0.12686826555439695,0.1798611111111111,0.24097222222222223,0.25277777777777777,0.1517361111111111,0.19479166666666667,0.23923611111111112,0.225,0.140625,0.23229166666666667,0.2048611111111111,0.12048611111111111,0.2701388888888889,0.20347222222222222,0.1545138888888889,0,0.009722222222222222,0,0.08715277777777777,0.2659722222222222,0.21284722222222222,0.31840277777777776,0.07013888888888889,0.39375,0.28125,0.17291666666666666,0.2947916666666667,0.19305555555555556,0.2861111111111111,0.1232638888888889,0.190625,0.15868055555555555,0.16041666666666668,0.17222222222222222,0.24583333333333332,0.14548611111111112,0.06388888888888888,0.18541666666666667,0.009722222222222222,0.2378472222222222,0.13268496005557484,0.15069444444444444,0.31805555555555554,0.1451388888888889,0.2690972222222222,0.34965277777777776,0.26631944444444444,0.2065972222222222,0.2547746371275783,0.33229166666666665,0.13923611111111112,0.22604166666666667,0.240625],"backgroundColor":"#5f0f6b"},{"label":"Half Up","data":[0.003125,0.00625,0.00034722222222222224,0,0.0024305555555555556,0.001388888888888889,0.0024305555555555556,0,0,0.0006944444444444445,0.00034722222222222224,0.003472222222222222,0.0038194444444444443,0.0006944444444444445,0,0,0.0017367141368530739,0.002777777777777778,0.0006944444444444445,0,0.0010416666666666667,0,0,0.002777777777777778,0.001736111111111111,0.004166666666666667,0.0010416666666666667,0.004861111111111111,0.0045138888888888885,0.0010427528675703858,0.005555555555555556,0.00034722222222222224,0,0.001388888888888889,0.0006944444444444445,0.0024305555555555556,0,0.0024305555555555556,0.0010416666666666667,0,0.00034722222222222224,0.0006944444444444445,0.001388888888888889,0,0.015625,0.001388888888888889,0.0006944444444444445,0.0010416666666666667,0.0024305555555555556,0.0006944444444444445,0.0006944444444444445,0.0020833333333333333,0.0006944444444444445,0.00034722222222222224,0.004861111111111111,0.0024305555555555556,0.001736111111111111,0,0.0024305555555555556,0.004861111111111111,0.004166666666666667,0.0045138888888888885,0.00034722222222222224,0.0006944444444444445,0,0.002777777777777778,0,0.0024305555555555556,0.001388888888888889,0.0069468565474122956,0.003125,0.0006944444444444445,0.00034722222222222224,0.001388888888888889,0.011111111111111112,0.001736111111111111,0.004166666666666667,0.001145912910618793,0.001736111111111111,0.0010416666666666667,0.0038194444444444443,0],"backgroundColor":"#26540F"},{"label":"Up","data":[0.09652777777777778,0.9232638888888889,0.7986111111111112,0.7210837096213963,0.8583333333333333,0.79375,0.7927083333333333,0.5340277777777778,0,0.9076388888888889,0.68125,0.6989583333333333,0.6913194444444445,0.7190972222222223,0.7604166666666666,0.4395833333333333,0.7599861062869052,0.6704861111111111,0.753125,0.7649305555555556,0.7857638888888889,0.7802083333333333,0.5506944444444445,0.74375,0.6739583333333333,0.7444444444444445,0.7659722222222223,0.7256944444444444,0.7447916666666666,0.5394508168230796,0.6986111111111111,0.5725694444444445,0.7149305555555555,0.7534722222222222,0.7267361111111111,0.7291666666666666,0.5232638888888889,0.7694444444444445,0.54375,0.7388888888888889,0.7305555555555555,0.6736111111111112,0.6451388888888889,0.3527777777777778,0.6638888888888889,0.6524305555555555,0.44375,0.4239583333333333,0.5034722222222222,0.7392361111111111,0.25833333333333336,0.7545138888888889,0.4322916666666667,0.4232638888888889,0.6899305555555556,0.6565972222222223,0.7809027777777777,0.40381944444444445,0.8003472222222222,0.48854166666666665,0.7847222222222222,0.6677083333333333,0.796875,0.7246527777777778,0.38263888888888886,0.7190972222222223,0.7479166666666667,0.9302083333333333,0.6680555555555555,0.8020145883987496,0.7298611111111111,0.409375,0.7173611111111111,0.6673611111111111,0.5888888888888889,0.7013888888888888,0.7329861111111111,0.6928953399541635,0.34652777777777777,0.6736111111111112,0.6170138888888889,0.1579861111111111],"backgroundColor":"#266b0f"}]}
+      });
+
+
+      var apiItems = document.querySelectorAll('#api-info h4');
+      for(var i = 0; i < apiItems.length; i++){
+          apiItems[i].addEventListener('click', function(event) {
+            this.parentElement.classList.toggle('expanded');
+          });
+      }
+
+    </script>
+  </body>
+</html>

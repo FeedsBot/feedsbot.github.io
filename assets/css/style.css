@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+*{
+  font-family: Quicksand, sans-serif;
+  color: #B8CBF1;
+  text-decoration: none;
+  outline: none;
+  list-style-type:none;
+  margin: 0;
+  padding: 0;
+}
+a:hover, a:hover * { color: white; transition: 0.3s; }
+
+body { background-color: #151B2B; padding: 2em 0; }
+main { width: 840px; margin: auto; }
+
+header {
+  margin: 0 0 2em 0;
+  position: relative;
+}
+header h1 a {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  float: left
+}
+header h1 img{
+  height: 2em;
+  width: 2em;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0px 2px 0.5ex black;
+  margin-right: 1ex;
+}
+header ul {
+  position: absolute;
+  right: 0;
+  top: 1.5em;
+}
+header ul li {
+  margin: 0 0 0 1em;
+  display: inline-block;
+}
+header ul li.active { border-bottom: 2px solid; }
+header ul li:last-child a, header ul li:last-child a:hover {
+  background-color: #B8CBF1;
+  padding: 1em 1em;
+  border-radius: 2em;
+  color: black;
+}
+header ul li:last-child a:hover { background-color: white; }
+
+footer {
+  text-align: center;
+  padding-top: 3em;
+  color: #4a5679;
+}
+footer ul li {
+  display: inline-block;
+  margin: 1ex;
+  padding: 0;
+  text-decoration: none;
+}
+footer ul li a, footer span { opacity: 0.5; }
+footer ul li a:hover { opacity: 1; }
+
+section {
+  padding: 3em 1em 4em;
+  margin: 1em 0;
+  border-bottom: 2px solid #4a5679;
+}
+section h2 a { color: #4a5679; font-size: 0.5em; }
+section h2 a:hover { color: white; }
+
+p.disclaimer {
+  color: #4a5679;
+  font-size: 0.75em;
+  text-align: center;
+  margin: 1em;
+}
+
+.bordered, #feedsbot-widget {
+  background-color: #1f2841;
+  border: 2px solid #4a5679;
+  border-radius: 1ex;
+  padding: 1em;
+}
+#feedsbot-widget {
+  padding: 1ex;
+  width: 18em;
+  margin-right: 2em;
+  float: left;
+}
+#feedsbot-widget img { width: 18em; height: 10.125em; margin-bottom: 0.5ex; }
+#feedsbot-widget .feedsbot-footer { font-size: 1.5ex; opacity: 0.5; }
+
+
+#intro { line-height: 1.3;}
+#intro a { border-bottom: 1px solid; }
+#intro #intro-text { margin-left: 21em; }
+
+#widget-info code{
+  font-style: oblique;
+  font-family: 'Courier New', Courier, monospace;
+  display: block;
+  padding: 1ex;
+  margin: 1ex 0;
+}
+
+
+#season-info #season-chart-container {
+  width: 18em !important;
+  height: 13em !important;
+  padding: 1ex;
+  margin-right: 2em;
+  float: left;
+}
+#season-info > ul { margin: 1em 0 1em 21em; }
+#season-info > ul ul { text-indent: 1em; }
+small { font-weight: lighter; opacity: 0.5; }
+
+
+
+#outages-info ul {
+  width: 22.3em;
+  margin: 1em 1em 0 0;
+  display: inline-block;
+}
+#outages-info ul:nth-child(even) { margin-right: 0; }
+#outages-info h3 {
+  display: block;
+  text-align: center;
+  font-size: 2em;
+  color: #4a5679;
+  font-weight: normal;
+  margin-top: 1em;
+}
+#outages-info ul li:first-child { text-align: center; margin-bottom: 1ex; }
+
+#api-info h4 {
+  background-color: #4a5679;
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 1ex;
+  cursor: pointer;
+}
+#api-info h4 strong, #api-info h4 small{
+  float: right;
+  font-size: 2em;
+  margin-top: -0.4em;
+  opacity: 1;
+}
+#api-info h4 small { display: none; }
+#api-info pre {
+  margin: 1em;
+  padding: 1ex;
+  display: none;
+  font-family: 'Courier New', Courier, monospace;
+}
+#api-info .expanded strong { display: none; }
+#api-info .expanded small { display: inline; }
+#api-info .expanded pre { display: block; }
